@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import ChatBot from "./chatBot/ChatBot";
+import BotTextResponse from "./botTextResponse";
+import "./App.css";
+import { requestURL, firstMessage } from "./config/params";
 
-function App() {
+const App = () => {
+  const steps = [
+    {
+      id: "welcome",
+      message: firstMessage,
+      trigger: "get_user_input"
+    },
+    {
+      id: "get_user_input",
+      user: true,
+      trigger: "custom"
+    },
+    {
+      id: "custom",
+      component: <BotTextResponse requestURL={requestURL} />,
+      waitAction: true,
+      asMessage: true
+    }
+  ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ChatBot
+        headerComponent={<div className="header">CoCo</div>}
+        steps={steps}
+      />
     </div>
   );
-}
+};
 
 export default App;
