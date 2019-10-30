@@ -1,6 +1,5 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import Logo from "../icons/logo.png";
 
 const useStyles = makeStyles(theme => ({
   header: {
@@ -21,7 +20,11 @@ const Header = ({ headerTitle }) => {
 
   return (
     <div className={classes.header}>
-      <img src={Logo} alt="Smiley face" height="37"></img>
+      <img
+        src={process.env.PUBLIC_URL + "/images/logo.png"}
+        height="37"
+        alt="logo"
+      />
     </div>
   );
 };

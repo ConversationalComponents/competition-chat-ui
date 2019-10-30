@@ -5,30 +5,27 @@ import "./App.css";
 
 const App = () => {
   const [steps, setSteps] = useState([]);
+  const [config] = useState(window.Config);
 
   useEffect(() => {
-    fetch("/params.json")
-      .then(r => r.json())
-      .then(data => {
-        setSteps([
-          {
-            id: "welcome",
-            message: data.firstMessage,
-            trigger: "get_user_input"
-          },
-          {
-            id: "get_user_input",
-            user: true,
-            trigger: "custom"
-          },
-          {
-            id: "custom",
-            component: <BotTextResponse requestURL={data.requestURL} />,
-            waitAction: true,
-            asMessage: true
-          }
-        ]);
-      });
+    setSteps([
+      {
+        id: "welcome",
+        message: config.firstMessage,
+        trigger: "get_user_input"
+      },
+      {
+        id: "get_user_input",
+        user: true,
+        trigger: "custom"
+      },
+      {
+        id: "custom",
+        component: <BotTextResponse requestURL={config.requestURL} />,
+        waitAction: true,
+        asMessage: true
+      }
+    ]);
   }, []);
 
   return (
