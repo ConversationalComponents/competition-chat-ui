@@ -21,8 +21,9 @@ const Header = ({ headerTitle }) => {
   return (
     <div className={classes.header}>
       <img
-        src={process.env.PUBLIC_URL + "/images/logo.png"}
-        height="37"
+        style={{ paddingLeft: "7px" }}
+        src={process.env.PUBLIC_URL + "/images/logoNew.png"}
+        height="35"
         alt="logo"
       />
     </div>
